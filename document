@@ -1,7 +1,7 @@
 > npx create-react-app project-name
 
 >Create react app - done
->Routing(With params, with queryparams, Authenticated routes, Nav Active routes, button click navigate to new page) - done
+>Routing(With params, with queryparams, Authenticated routes(pending...), Nav Active routes, button click navigate to new page) - done
 >State(useState) - done
 >Parent to child - done
 >Forms

@@ -2,6 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import About from "./Pages/About/About";
 import Header from "./Pages/Common/Header/Header";
 import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
 import PageNotFound from "./Pages/PageNotFount/PageNotFound";
 import Singleuser from "./Pages/Singleuser/Singleuser";
 
@@ -22,6 +23,7 @@ function App() {
         */}
         <Route path="/about" element={<About />} />
         <Route path="/user/:userid" element={<Singleuser />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
