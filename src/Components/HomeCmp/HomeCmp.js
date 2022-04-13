@@ -11,7 +11,12 @@ const HomeCmp = (props) => {
     // const getById = (id) => {
     //     props.getProductId(id)
     // }
-    
+
+    // const SingleUserDeatiledView = (id) => {
+
+    //     props.userDetails(id)
+    // }
+
     return (
         <div>
             Home page
@@ -23,6 +28,17 @@ const HomeCmp = (props) => {
             <h1>{props.title}</h1>
             <h1>{props.user.name + props.total}</h1>
             <button onClick={props.UpdateTitle}>update</button>
+            <div className="main-bx">
+                {props.users.length > 0 && props.users.map((item, i) =>
+                    <div className="box" key={i}>
+                        <h1 className="name">{item.first_name + " " + item.last_name}</h1>
+                        <img src={item.avatar} alt="nop imagessadfs" />
+                        <button onClick={() => props.navigateToNewPage(item.id)} >Click</button>
+                    </div>
+                )}
+            </div>
+
+
             {/* <h1>{list[1].pname}</h1> */}
             <table>
                 <thead>
