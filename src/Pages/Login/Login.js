@@ -1,9 +1,15 @@
+import Axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
     // const [userName, setUserName] = useState("");
     // const [userPassword, setUserPassword] = useState("");
+
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
+    const [isLoginSuccess, setIsLoginSuccess] = useState(false);
 
     const [userObj, setUserObj] = useState({
         useremail: '',
@@ -13,7 +19,9 @@ const Login = () => {
     const [errorObj, setErrorObj] = useState({
         emailErr: '',
         passwordErr: ''
-    })
+    });
+
+    const navigate = useNavigate();
 
 
     const handleChange = (event) => {
@@ -67,10 +75,51 @@ const Login = () => {
     // console.log("outside",userName, userPassword);
     console.log("outside", userObj, errorObj);
 
+    const submitForm = (event) => {
+        event.preventDefault();
+
+        if (userObj.useremail && userObj.userPassword) {
+            // alert("Success")
+            const body = {
+                "email": userObj.useremail,
+                "password": userObj.userPassword
+            }
+            setIsSuccess(false);
+            Axios.post('https://reqres.in/api/login', body).then(res => {
+                console.log(res.data);
+                // navigate('/home', { replace: true })
+                setIsLoginSuccess(true);
+                // if (res.data.status ===1) {
+
+                // }
+            }).catch(err => {
+                console.log("==============error", err.response.data.error);
+                if (err.response.data.error) {
+                    setIsSuccess(true);
+                    setErrorMsg(err.response.data.error)
+                }
+                // alert(err.response.data.error)
+            })
+        } else {
+            alert("Please enter all inputs")
+        }
+    }
+
+    const nextPage = () => {
+        setIsLoginSuccess(false);
+        navigate('/home', { replace: true })
+    }
+
+
+    const closeModal = () => {
+        setIsSuccess(false);
+    }
+    
     return (
         <main className="form-signin row justify-content-center">
-            <form className='col-sm-6'>
+            <form className='col-sm-6' onSubmit={submitForm}>
                 <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+                {isSuccess ? <h1 className="h3 mb-3 fw-normal text-danger">{errorMsg}</h1> : null}
                 <div className="form-floating">
                     <input
                         type="email"
@@ -95,6 +144,21 @@ const Login = () => {
                 <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
                 {/* <p className="mt-5 mb-3 text-muted">© 2017–2021</p> */}
             </form>
+            {isLoginSuccess &&
+                <div className="custom-modal">
+                    <div className="custom-modal-body">
+                        <h1>User Successfully loggedin!</h1>
+                        <button onClick={nextPage}>Okay!</button>
+                    </div>
+                </div>}
+
+                {isSuccess &&
+                <div className="custom-modal">
+                    <div className="custom-modal-body red">
+                        <h1>{errorMsg}!</h1>
+                        <button onClick={closeModal}>Close</button>
+                    </div>
+                </div>}
         </main>
 
     )

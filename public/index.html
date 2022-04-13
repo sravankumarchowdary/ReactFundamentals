@@ -48,6 +48,47 @@
         margin-top: 20px;
         cursor: pointer;
       }
+      .custom-modal{
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(28, 28, 28, 0.447);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .custom-modal-body.red{
+        background-color: rgb(253, 96, 96) !important;
+      }
+      .custom-modal-body{
+        width: 300px;
+        min-height: 200px;
+        background-color: rgb(149, 248, 175);
+        box-shadow: 6px 6px 15px rgba(35, 35, 35, 0.116);
+        padding: 2%;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .custom-modal-body h1{
+        color: rgb(31, 31, 31);
+        text-align: center;        
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+      .custom-modal-body button{
+        width: 120px;
+        height: 45px;
+        border-radius: 20px;
+        border: 0;
+        box-shadow: 6px 6px 15px rgba(35, 35, 35, 0.116);
+        font-size: 18px;
+      }
     </style>
     
   </head>

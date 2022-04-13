@@ -6,7 +6,8 @@ const Header = () => {
     const naviage = useNavigate();
 
     const goToLoginPage = () => {
-        naviage('/home', { replace: true }) // not to store the previous route/page
+        // naviage('/home', { replace: true }) // not to store the previous route/page
+        naviage('/login', { replace: true }) // not to store the previous route/page
     }
 
     return (
